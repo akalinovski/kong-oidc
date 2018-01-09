@@ -41,6 +41,7 @@ function handle(oidcConfig)
     if response and response.user then
       utils.injectUser(response.user)
       ngx.req.set_header("X-Userinfo", cjson.encode(response.user))
+      ngx.req.set_header("X-Forwarded-User", response.user.username)
     end
   end
 end
